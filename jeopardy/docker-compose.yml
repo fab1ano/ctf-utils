@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+    pwn:
+        build: .
+        container_name: pwn
+        restart: always
+        cap_add:
+            - SYS_PTRACE
+        security_opt:
+            - seccomp:unconfined
+        ports:
+            - "2222:2222"
+            - "2223:2223"
+            - "2224:2224"
+        volumes:
+            - ./files:/root
