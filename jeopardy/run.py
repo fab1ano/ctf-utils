@@ -23,7 +23,7 @@ def run_process(cmd):
         proc.wait()
         if proc.returncode == 130:
             break
-        print(f"socat died. Restarting. (Exit code: {proc.returncode})")
+        print(f'socat died. Restarting. (Exit code: {proc.returncode})')
 
 
 def main():
