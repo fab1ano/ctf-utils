@@ -61,14 +61,15 @@ def main():
         p = remote('pwn.local', 2222)
     elif mode == 'debug':
         p = remote('pwn.local', 2223)
-        gdb_cmd = ['tmux',
-                   'split-window',
-                   '-p',
-                   '75',
-                   'gdb',
-                   '-ex',
-                   'target remote pwn.local:2224',
-                   ]
+        gdb_cmd = [
+            'tmux',
+            'split-window',
+            '-p',
+            '75',
+            'gdb',
+            '-ex',
+            'target remote pwn.local:2224',
+        ]
 
         for cmd in GDB_COMMANDS:
             gdb_cmd.append('-ex')
