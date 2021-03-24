@@ -22,8 +22,12 @@ RUN git clone https://github.com/JonathanSalwan/ROPgadget
 #RUN git clone https://github.com/pwndbg/pwndbg && cd pwndbg && git checkout stable && ./setup.sh
 RUN git clone https://github.com/niklasb/libc-database && cd libc-database && ./get ubuntu debian
 
+RUN bash -c "$(wget http://gef.blah.cat/sh -O -)"
+
 RUN gem install one_gadget
 
 ADD jeopardy/run.py run.py
 
-WORKDIR /root
+RUN echo 'unbind C-b\nset-option -g prefix C-n' > ~/.tmux.conf
+
+WORKDIR /root/pwd
