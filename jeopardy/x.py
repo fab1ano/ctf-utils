@@ -14,6 +14,8 @@ LIB = './libc.so'
 HOST = 'example.com'
 PORT = 1337
 
+PWN_HOST = 'localhost'
+
 GDB_COMMANDS = ['b main']
 
 
@@ -58,9 +60,9 @@ def main():
     #    p = gdb.debug(args=BINARY, gdbscript='\n'.join(GDB_COMMANDS), env=env)
 
     if mode == 'local':
-        p = remote('pwn.local', 2222)
+        p = remote(PWN_HOST, 2222)
     elif mode == 'debug':
-        p = remote('pwn.local', 2223)
+        p = remote(PWN_HOST, 2223)
         gdb_cmd = [
             'tmux',
             'split-window',
@@ -68,7 +70,7 @@ def main():
             '75',
             'gdb',
             '-ex',
-            'target remote pwn.local:2224',
+            f'target remote {PWN_HOST}:2224',
         ]
 
         for cmd in GDB_COMMANDS:
